@@ -20,14 +20,13 @@ PASSAGGI:
 7- altro ciclo in cui definisco con un booleano se sono presenti o meno nell'array;
 */
 
-
-
 // Stampo primo array 
 
 var randomNumbersList = [];
 
-var randomNumber = randomizeNumber(1, 100);
+// RANDOMIZZO 5 NUMERI
 
+var randomNumber = randomizeNumber(1, 100);
 
 while (randomNumbersList.length < 5) {
     randomNumber = randomizeNumber(1, 100);
@@ -38,12 +37,49 @@ while (randomNumbersList.length < 5) {
     }
 }
 
-
 console.table(randomNumbersList);
+
+// ALERT CON ARRAY DI NUMERI RANDOM
 alert(randomNumbersList);
 
 
+// INSERISCO LA FUNZIONE DEL TIMEOUT CON ALL'INTERNO LA LOGICA DEL GIOCO
 
+var userNumber;
+
+var userNumbersList = [];
+
+setTimeout(function () {
+    //    CHIEDO IL NUMERO ALL'UTENTE FINO A CHE NON è UN VALORE VALIDO CONTINUO A CHIEDERE
+    for (var i = 0; i < randomNumbersList.length; i++) {
+        userNumber = prompt("Inserisci i numeri visti in precedenza...");
+        while (!userNumber || isNaN(userNumber) || userNumber.trim() === "") {
+            userNumber = prompt("Inserisci i numeri visti in precedenza...");
+        }
+        // PUSHO IL NUMERO ALL'INTERNO DELL'ARRAY DEI NUMERI SCELTI DALL'UTENTE
+        userNumbersList.push(parseInt(userNumber));
+    }
+    console.table(userNumbersList);
+    console.log(userNumber);
+
+    // CREO ARRAY NUMERI INDOVINATI
+    var guessedNumbers = [];
+    // FACCIO CICLARE PER VERIFICARE SE I NUMERI SONO PRESENTI NELL'ARRAY DEI NUMERI RANDOM. SE NON PRESENTI LI PUSHO NELL'ARRAY DEI NUMERI INDOVINATI
+
+    for (var i = 0; i < userNumbersList.length; i++) {
+        if (randomNumbersList.includes(userNumbersList[i])) {
+            guessedNumbers.push(userNumbersList[i]);
+            console.table(guessedNumbers);
+        } else {
+            console.table(guessedNumbers);
+        }
+    }
+
+    // STAMPO IL RISULTATO DEL GIOCO
+
+    console.log("I numeri da te indovinati sono: ", guessedNumbers)
+    console.log("Hai indovinato: ", guessedNumbers.length, "numeri!");
+}, 2000)
 
 
 
