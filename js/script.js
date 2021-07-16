@@ -20,6 +20,12 @@ PASSAGGI:
 7- altro ciclo in cui definisco con un booleano se sono presenti o meno nell'array;
 */
 
+// VARIABILI PER STAMPA IN HTML
+
+var displayNumbersGuessed = document.getElementById("guessed-numbers");
+var displayHowManyNumbersGuessed = document.getElementById("u-guess");
+
+
 // Stampo primo array 
 
 var randomNumbersList = [];
@@ -66,6 +72,7 @@ setTimeout(function () {
     var guessedNumbers = [];
     // FACCIO CICLARE PER VERIFICARE SE I NUMERI SONO PRESENTI NELL'ARRAY DEI NUMERI RANDOM. SE NON PRESENTI LI PUSHO NELL'ARRAY DEI NUMERI INDOVINATI
 
+
     for (var i = 0; i < userNumbersList.length; i++) {
         if (randomNumbersList.includes(userNumbersList[i])) {
             guessedNumbers.push(userNumbersList[i]);
@@ -75,10 +82,21 @@ setTimeout(function () {
         }
     }
 
+    // CICLO PER STAMPA IN HTML
+    var guessedNumberElement = "";
+
+    for (var i = 0; i < guessedNumbers.length; i++) {
+        guessedNumberElement += "<li>" + guessedNumbers[i] + "</li>";
+        displayNumbersGuessed.innerHTML = guessedNumberElement;
+    }
+
+
     // STAMPO IL RISULTATO DEL GIOCO
 
-    console.log("I numeri da te indovinati sono: ", guessedNumbers)
+    console.log("I numeri da te indovinati sono: ", guessedNumbers);
+
     console.log("Hai indovinato: ", guessedNumbers.length, "numeri!");
+    displayHowManyNumbersGuessed.innerHTML = "Hai indovinato: " + guessedNumbers.length + " numeri!";
 }, 2000)
 
 
