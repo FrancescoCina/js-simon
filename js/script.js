@@ -27,9 +27,20 @@ PASSAGGI:
 var randomNumbersList = [];
 
 var randomNumber = randomizeNumber(1, 100);
-console.log(randomNumber);
 
 
+while (randomNumbersList.length < 5) {
+    randomNumber = randomizeNumber(1, 100);
+    if (randomNumbersList.includes(randomNumber)) {
+        randomNumber = randomizeNumber(1, 100);
+    } else {
+        randomNumbersList.push(randomNumber);
+    }
+}
+
+
+console.table(randomNumbersList);
+alert(randomNumbersList);
 
 
 
