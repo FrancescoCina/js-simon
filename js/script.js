@@ -49,55 +49,124 @@ console.table(randomNumbersList);
 alert(randomNumbersList);
 
 
-// INSERISCO LA FUNZIONE DEL TIMEOUT CON ALL'INTERNO LA LOGICA DEL GIOCO
+// INSERISCO TIMER DA 30 SECONDI
 
-var userNumber;
+var displayTimer = document.getElementById("timer");
+console.log(displayTimer);
 
-var userNumbersList = [];
+var valueTimer = 30;
+valueTimer = valueTimer--;
+var intervalId = setInterval(function () {
+    valueTimer--;
+    displayTimer.innerHTML = valueTimer;
+    console.log(valueTimer);
+    if (valueTimer === 0) {
+        clearInterval(intervalId);
+        displayTimer.innerHTML = valueTimer;
 
-setTimeout(function () {
-    //    CHIEDO IL NUMERO ALL'UTENTE FINO A CHE NON è UN VALORE VALIDO CONTINUO A CHIEDERE
-    for (var i = 0; i < randomNumbersList.length; i++) {
-        userNumber = prompt("Inserisci i numeri visti in precedenza...");
-        while (!userNumber || isNaN(userNumber) || userNumber.trim() === "") {
-            userNumber = prompt("Inserisci i numeri visti in precedenza...");
-        }
-        // PUSHO IL NUMERO ALL'INTERNO DELL'ARRAY DEI NUMERI SCELTI DALL'UTENTE
-        userNumbersList.push(parseInt(userNumber));
+        // INSERISCO LA FUNZIONE DEL TIMEOUT CON ALL'INTERNO LA LOGICA DEL GIOCO
+
+        var userNumber;
+
+        var userNumbersList = [];
+
+        setTimeout(function () {
+            //    CHIEDO IL NUMERO ALL'UTENTE FINO A CHE NON è UN VALORE VALIDO CONTINUO A CHIEDERE
+            for (var i = 0; i < randomNumbersList.length; i++) {
+                userNumber = prompt("Inserisci i numeri visti in precedenza...");
+                while (!userNumber || isNaN(userNumber) || userNumber.trim() === "") {
+                    userNumber = prompt("Inserisci i numeri visti in precedenza...");
+                }
+                // PUSHO IL NUMERO ALL'INTERNO DELL'ARRAY DEI NUMERI SCELTI DALL'UTENTE
+                userNumbersList.push(parseInt(userNumber));
+            }
+            console.table(userNumbersList);
+            console.log(userNumber);
+
+            // CREO ARRAY NUMERI INDOVINATI
+            var guessedNumbers = [];
+            // FACCIO CICLARE PER VERIFICARE SE I NUMERI SONO PRESENTI NELL'ARRAY DEI NUMERI RANDOM. SE NON PRESENTI LI PUSHO NELL'ARRAY DEI NUMERI INDOVINATI
+
+
+            for (var i = 0; i < userNumbersList.length; i++) {
+                if (randomNumbersList.includes(userNumbersList[i])) {
+                    guessedNumbers.push(userNumbersList[i]);
+                    console.table(guessedNumbers);
+                } else {
+                    console.table(guessedNumbers);
+                }
+            }
+
+            // CICLO PER STAMPA IN HTML
+            var guessedNumberElement = "";
+
+            for (var i = 0; i < guessedNumbers.length; i++) {
+                guessedNumberElement += "<li>" + guessedNumbers[i] + "</li>";
+                displayNumbersGuessed.innerHTML = guessedNumberElement;
+            }
+
+
+            // STAMPO IL RISULTATO DEL GIOCO
+
+            console.log("I numeri da te indovinati sono: ", guessedNumbers);
+
+            console.log("Hai indovinato: ", guessedNumbers.length, "numeri!");
+            displayHowManyNumbersGuessed.innerHTML = "Hai indovinato: " + guessedNumbers.length + " numeri!";
+        }, 10)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
-    console.table(userNumbersList);
-    console.log(userNumber);
-
-    // CREO ARRAY NUMERI INDOVINATI
-    var guessedNumbers = [];
-    // FACCIO CICLARE PER VERIFICARE SE I NUMERI SONO PRESENTI NELL'ARRAY DEI NUMERI RANDOM. SE NON PRESENTI LI PUSHO NELL'ARRAY DEI NUMERI INDOVINATI
 
 
-    for (var i = 0; i < userNumbersList.length; i++) {
-        if (randomNumbersList.includes(userNumbersList[i])) {
-            guessedNumbers.push(userNumbersList[i]);
-            console.table(guessedNumbers);
-        } else {
-            console.table(guessedNumbers);
-        }
-    }
-
-    // CICLO PER STAMPA IN HTML
-    var guessedNumberElement = "";
-
-    for (var i = 0; i < guessedNumbers.length; i++) {
-        guessedNumberElement += "<li>" + guessedNumbers[i] + "</li>";
-        displayNumbersGuessed.innerHTML = guessedNumberElement;
-    }
-
-
-    // STAMPO IL RISULTATO DEL GIOCO
-
-    console.log("I numeri da te indovinati sono: ", guessedNumbers);
-
-    console.log("Hai indovinato: ", guessedNumbers.length, "numeri!");
-    displayHowManyNumbersGuessed.innerHTML = "Hai indovinato: " + guessedNumbers.length + " numeri!";
-}, 2000)
+}, 1000);
 
 
 
