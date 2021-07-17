@@ -54,6 +54,8 @@ alert(randomNumbersList);
 var displayTimer = document.getElementById("timer");
 console.log(displayTimer);
 
+var displayTimerContainer = document.getElementById("timer-box");
+
 var valueTimer = 30;
 valueTimer = valueTimer--;
 var intervalId = setInterval(function () {
@@ -71,6 +73,12 @@ var intervalId = setInterval(function () {
         var userNumbersList = [];
 
         setTimeout(function () {
+
+            // INSERISCO CLASSE D-NONE A DIV#TIMER PER FARLA SPARIRE
+
+            displayTimer.classList.add("d-none");
+
+
             //    CHIEDO IL NUMERO ALL'UTENTE FINO A CHE NON è UN VALORE VALIDO CONTINUO A CHIEDERE
             for (var i = 0; i < randomNumbersList.length; i++) {
                 userNumber = prompt("Inserisci i numeri visti in precedenza...");

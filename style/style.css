@@ -3,12 +3,18 @@
     margin: 0 auto;
 }
 
-.timer-container, 
-.numbers-list{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+body{
+    margin: 100px;
     font-size: 50px;
 }
 
+#guessed-numbers, 
+#u-guess {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.d-none{
+    display: none;
+}
